@@ -8,6 +8,13 @@ package golibknot
 */
 import "C"
 
+const (
+	END   = iota
+	DATA  = iota
+	EXTRA = iota
+	BLOCK = iota
+)
+
 type KnotCtlData struct {
 	Command, Flags, Error, Section, Item, Id, Zone, Owner, Ttl, Type, Data, Filter string
 }
@@ -27,10 +34,3 @@ func (obj *KnotCtlData) FromCtl(data C.knot_ctl_data_t) {
 		*v = C.GoString(data[i])
 	}
 }
-
-const (
-	END   = iota
-	DATA  = iota
-	EXTRA = iota
-	BLOCK = iota
-)
