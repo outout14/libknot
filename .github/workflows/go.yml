@@ -12,6 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    
+    - name: Install C libknot from official repository
+      run: |
+        sudo add-apt-repository ppa:cz.nic-labs/knot-dns
+        sudo apt-get update
+        sudo apt install libknot-dev
 
     - name: Set up Go
       uses: actions/setup-go@v2
