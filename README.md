@@ -1,8 +1,24 @@
 # GoLibknot : Go interface for managing the Knot DNS daemon
 
-Basic example : 
+GoLibKnot is a GoLang interface to manage the KnotDNS daemon using the C library ([libknot](https://github.com/CZ-NIC/knot/tree/master/tests/libknot)) based on the ([official Python interface](https://pypi.org/project/libknot/)].
 
-````go
+
+Since the software loads the C library dynamically, you must install it on your development and production machine. 
+When publishing compiled software, pay attention to the version of libknot used.
+
+
+## Usage 
+
+You can uses this library in two ways : 	
+- Directly sending message using ``Send()``, one with the ``DATA`` unit type and one with a ``BLOCK`` unit type after and get the data back using ``Receive()`` and ``for`` loops.
+- Using the wrapper functions : ``SendBlock()`` who will take care of the unit types and ``ReceiveBlock()`` which will output the received data as an array.
+
+
+## Examples 
+
+- Basic example using wrapper functions : 
+
+```go
 package main
 
 import "fmt"
@@ -28,10 +44,10 @@ func main() {
 	for _, s := range data {
 		fmt.Println(s.Data) //Print received data 
 	}
-	/* End receive*/
+	/* End Receive*/
 
 	ctl.Send(END, nil) //Always terminate the connection
 	ctl.Close()
 }
 
-````
+```
