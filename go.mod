@@ -1,3 +1,3 @@
-module github.com/outout14/golibknot
+module github.com/outout14/libknot
 
 go 1.16

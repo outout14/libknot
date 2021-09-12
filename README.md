@@ -1,6 +1,6 @@
-# GoLibknot : Go interface for managing the Knot DNS daemon
+# LibKnot : Go interface for managing the Knot DNS daemon
 
-GoLibKnot is a GoLang interface to manage the KnotDNS daemon using the C library ([libknot](https://github.com/CZ-NIC/knot/tree/master/tests/libknot)) based on the ([official Python interface](https://pypi.org/project/libknot/)].
+LibKnot is a GoLang interface to manage the KnotDNS daemon using the C library ([libknot](https://github.com/CZ-NIC/knot/tree/master/tests/libknot)) based on the ([official Python interface](https://pypi.org/project/libknot/)].
 
 
 Since the software loads the C library dynamically, you must install it on your development and production machine. 

@@ -1,4 +1,4 @@
-package golibknot
+package libknot
 
 import (
 	"testing"

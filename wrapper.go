@@ -1,4 +1,4 @@
-package golibknot
+package libknot
 
 // ErrCheck panics if there is an error
 func (ctl KnotCtl) ErrCheck(e int) {
