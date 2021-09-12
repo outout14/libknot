@@ -14,6 +14,13 @@ func (ctl *KnotCtl) Init(path string) int {
 	return err
 }
 
+// Terminate Sends END, Closes the UNIX socket, deallocates (Free) the control socket.
+func (ctl *KnotCtl) Terminate() {
+	ctl.Send(END, nil)
+	ctl.Close()
+	ctl.Free()
+}
+
 // SendBlock sends one control unit with the data and an other one with the BLOCK unit type telling the KnotDNS server that the message is finished and that it can respond to us.
 func (ctl KnotCtl) SendBlock(data KnotCtlData) int {
 	x := data.ToCtl()

@@ -35,19 +35,18 @@ func main() {
 		Section: "zone",
 		Item:    "domain",
 	}
-	_ = ctl.SendBlock(&msg)
-	/* End Send */ 
-	
+	_ = ctl.SendBlock(msg)
+	/* End Send */
+
 	/* Receive */
 	data := ctl.ReceiveBlock()
 
 	for _, s := range data {
-		fmt.Println(s.Data) //Print received data 
+		fmt.Println(s.Data) //Print received data
 	}
 	/* End Receive*/
 
-	ctl.Send(END, nil) //Always terminate the connection
-	ctl.Close()
+	ctl.Terminate() //Clsoe Send(End) + Close() + Free()
 }
 
 ```

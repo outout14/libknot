@@ -23,6 +23,11 @@ func (ctl *KnotCtl) Alloc() {
 	ctl.CtlAlloc = C.knot_ctl_alloc()
 }
 
+// Free deallocates a control socket.
+func (ctl *KnotCtl) Free() {
+	C.knot_ctl_free(ctl.CtlAlloc)
+}
+
 // Close closes connections to the server.
 func (ctl *KnotCtl) Close() {
 	C.knot_ctl_close(ctl.CtlAlloc)

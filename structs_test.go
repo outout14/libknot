@@ -1,6 +1,8 @@
 package golibknot
 
-import "testing"
+import (
+	"testing"
+)
 
 // TestDataToFromCtlEmpty makes sure that the consistency of the data between the C and Go structures remains good with nil values
 func TestDataToFromCtlEmpty(t *testing.T) {
