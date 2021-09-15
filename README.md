@@ -20,16 +20,20 @@ You can uses this library in two ways :
 ```go
 package main
 
-import "fmt"
+import (
+	"fmt"
+	
+	"github.com/outout14/libknot"
+)
 
 func main() {
-	ctl := KnotCtl{} //Define the connection
+	ctl := libknot.KnotCtl{} //Define the connection
 
 	err := ctl.Init("/var/run/knot/knot.sock") // Allocate de control context + Connect(socket)
-	ctl.ErrCheck(err) //Panic if err != 0 and print the error as a human readble string 
+	ctl.ErrCheck(err)                          //Panic if err != 0 and print the error as a human readble string
 
 	/* Send */
-	msg := KnotCtlData{
+	msg := libknot.KnotCtlData{
 		Command: "conf-read",
 		Section: "zone",
 		Item:    "domain",
@@ -45,6 +49,6 @@ func main() {
 	}
 	/* End Receive*/
 
-	ctl.Terminate() //Send(END) + Close() + Free() control ctx 
+	ctl.Terminate() //Send(END) + Close() + Free() control ctx
 }
 ```
