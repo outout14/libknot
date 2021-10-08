@@ -26,7 +26,11 @@ func (obj KnotCtlData) ToCtl() C.knot_ctl_data_t {
 	var ctlStruct C.knot_ctl_data_t
 	objs := []string{obj.Command, obj.Flags, obj.Error, obj.Section, obj.Item, obj.Id, obj.Zone, obj.Owner, obj.Ttl, obj.Type, obj.Data, obj.Filter}
 	for k, v := range objs {
-		ctlStruct[k] = C.CString(v)
+		if v != "" {
+			ctlStruct[k] = C.CString(v)
+		} else {
+			ctlStruct[k] = nil
+		}
 	}
 	return ctlStruct
 }
