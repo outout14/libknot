@@ -33,14 +33,18 @@ func (ctl KnotCtl) SendBlock(data KnotCtlData) int {
 }
 
 // ReceiveBlock retrieves all data (DATA and EXTRA unit type) received by the server until it tells us (END or BLOCK unit type) that it is finished.
-func (ctl KnotCtl) ReceiveBlock() []KnotCtlData {
+// Returns an error as int
+func (ctl KnotCtl) ReceiveBlock() ([]KnotCtlData, int) {
 	var answers []KnotCtlData
 	for {
 		var receivedData KnotCtlData
 		msg := KnotCtlData{}.ToCtl()
 
 		err, reqType := ctl.Receive(&msg)
-		ctl.ErrCheck(err)
+
+		if err != 0 {
+			return nil, err
+		}
 
 		if reqType != DATA && reqType != EXTRA {
 			break
@@ -49,9 +53,11 @@ func (ctl KnotCtl) ReceiveBlock() []KnotCtlData {
 		receivedData.FromCtl(msg)
 
 		if receivedData.Error != "" {
-			panic(receivedData.Error)
+			answers = append(answers, receivedData)
+			return answers, -1
 		}
+
 		answers = append(answers, receivedData)
 	}
-	return answers
+	return answers, 0
 }
