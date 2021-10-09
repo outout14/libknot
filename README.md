@@ -42,7 +42,7 @@ func main() {
 	/* End Send */
 
 	/* Receive */
-	data := ctl.ReceiveBlock() //Retrieves all DATA and EXTRA type messages
+	data, _ := ctl.ReceiveBlock() //Retrieves all DATA and EXTRA type messages
 
 	for _, s := range data {
 		fmt.Println(s.Data) //Print received data
